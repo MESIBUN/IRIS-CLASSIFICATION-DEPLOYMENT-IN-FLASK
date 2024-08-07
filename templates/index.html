@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ML API</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arimo"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Hind:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      body {
+        background: url("{{ url_for('static', filename='iris.jpg') }}")
+          no-repeat center center fixed;
+        background-size: cover;
+        font-family: "Arimo", sans-serif;
+      }
+      .login {
+        width: 300px;
+        padding: 20px;
+        margin: 100px auto;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .login h1 {
+        font-family: "Pacifico", cursive;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      .login input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      .login button {
+        width: 100%;
+        padding: 10px;
+        background: #28a745;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .login button:hover {
+        background: #218838;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login">
+      <h1>Flower Class Prediction</h1>
+
+      <!-- Main Input For Receiving Query to our ML -->
+      <form action="{{ url_for('predict') }}" method="post">
+        <input
+          type="text"
+          name="Sepal_Length"
+          placeholder="Sepal Length"
+          required="required"
+        />
+        <input
+          type="text"
+          name="Sepal_Width"
+          placeholder="Sepal Width"
+          required="required"
+        />
+        <input
+          type="text"
+          name="Petal_Length"
+          placeholder="Petal Length"
+          required="required"
+        />
+        <input
+          type="text"
+          name="Petal_Width"
+          placeholder="Petal Width"
+          required="required"
+        />
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">
+          Predict
+        </button>
+      </form>
+
+      <br />
+      <br />
+      {{ prediction_text }}
+    </div>
+  </body>
+</html>
